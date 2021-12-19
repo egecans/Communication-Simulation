@@ -1,0 +1,80 @@
+
+package question;
+
+public class Bill {
+
+	//DO_NOT_EDIT_ANYTHING_ABOVE_THIS_LINE
+	
+	
+	private double limitingAmount;
+	private double currentDebt;
+	private double totalMoneySpent;
+	
+	public Bill(double limitingAmount) {
+		this.limitingAmount = limitingAmount;
+		currentDebt = 0;
+		totalMoneySpent = 0;
+	}
+	
+	/** This method ensures that amount cannot exceed the limit.
+	 * 
+	 * @param amount currentDebt + cost of operation that comes from input file.
+	 * @return validity
+	 */
+	public boolean check (double amount) {
+		if (amount>limitingAmount)
+			return false;
+		else
+			return true;
+	}
+	
+	/** This method raises the currentDebt whenever an operation occurs
+	 * 
+	 * @param amount
+	 */
+	public void add (double amount) {
+		currentDebt += amount;
+	}
+	
+	/** This method decreases the currentDebt when customer pays hiss bill.
+	 *  if he pays more then his debt then the surplus won't take into account.
+	 * @param amount
+	 */
+	public void pay (double amount) {
+		if (amount <=  currentDebt) {
+		currentDebt -= amount;
+		totalMoneySpent += amount;
+		}
+		else {
+			totalMoneySpent += currentDebt;
+			currentDebt = 0;
+		}
+	}
+	/** This method is changing the limit.
+	 *  But the limit must be great equal the currentDebt!
+	 * @param amount
+	 */
+	public void changeTheLimit (double amount) {
+		if (amount >= currentDebt) { 
+		this.limitingAmount = amount;
+		}
+	}
+
+
+	public double getLimitingAmount() {
+		return limitingAmount;
+	}
+
+
+	public double getCurrentDebt() {
+		return currentDebt;
+	}
+
+
+	public double getTotalMoneySpent() {
+		return totalMoneySpent;
+	}
+	
+	//DO_NOT_EDIT_ANYTHING_BELOW_THIS_LINE
+}
+
